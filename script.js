@@ -20,6 +20,14 @@ function divide(){
 
 };
 
+function mod(){
+
+};
+
+function clear(){
+
+};
+
 function operate(a, b, op){
 
 };
