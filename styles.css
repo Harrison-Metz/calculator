@@ -1,0 +1,24 @@
+body {
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    background-color: gray;
+    margin: 10vh 40vw auto 40vw;
+    padding: 10px;
+}
+
+#inputBox {
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+}
