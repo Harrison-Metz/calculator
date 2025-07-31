@@ -14,6 +14,7 @@ const numberButtons = document.querySelectorAll('.num');
 const operatorButtons = document.querySelectorAll('.op');
 const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('delete');
+const decimalBtn = document.getElementById('decimal');
 
 function operate(a, b, op){
     let A = parseInt(a);
@@ -82,7 +83,6 @@ equalsBtn.addEventListener('click', function(){
         inputBox.value = answer;
         input = inputBox.value;
         opCounter = 0;
-        console.log(answer);
     }
 });
 
@@ -102,6 +102,11 @@ deleteBtn.addEventListener('click', function(){
         input = temp.slice(0, -1);
         inputBox.value = input;
     }
-    
-    
-})
+});
+
+decimalBtn.addEventListener('click', function(){
+    if(!input.includes('.')){
+        input += '.';
+        inputBox.value = input;
+    }
+});
