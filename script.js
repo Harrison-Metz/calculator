@@ -5,17 +5,20 @@ let input = '';
 let opCounter = 0;
 let answer = '';
 let opClicked = false;
+let delActive = true;
+let equalsPressed = false;
 
 const inputBox = document.getElementById('inputBox');
 const equalsBtn = document.getElementById('equals');
 const numberButtons = document.querySelectorAll('.num');
 const operatorButtons = document.querySelectorAll('.op');
 const clearBtn = document.getElementById('clear');
+const deleteBtn = document.getElementById('delete');
 
 function operate(a, b, op){
     let A = parseInt(a);
     let B = parseInt(b);
-    // operator = '';
+    input = '';
     if(op === '+'){
         return A + B;
     }else if(op === '-'){
@@ -31,10 +34,10 @@ function operate(a, b, op){
 
 numberButtons.forEach(button => {
     button.addEventListener('click', function(){
-        if(opCounter > 0){
+        if(equalsPressed){
             input = '';
-            num2 = '';
         }
+        delActive = true;
         opClicked = false;
         input += button.innerHTML;
         inputBox.value = input;
@@ -43,6 +46,7 @@ numberButtons.forEach(button => {
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', function(){
+        delActive = false;
         if(!opClicked){
             if(opCounter === 0){
                 opClicked = true;
@@ -70,6 +74,8 @@ operatorButtons.forEach(button => {
 });
 
 equalsBtn.addEventListener('click', function(){
+    delActive = false;
+    equalsPressed = true;
     if(opCounter === 1){
         num2 = inputBox.value;
         answer = operate(num1, num2, operator);
@@ -89,3 +95,13 @@ clearBtn.addEventListener('click', function(){
     opCounter = 0;
     inputBox.value = '';
 });
+
+deleteBtn.addEventListener('click', function(){
+    if(delActive){
+        temp = inputBox.value;
+        input = temp.slice(0, -1);
+        inputBox.value = input;
+    }
+    
+    
+})
