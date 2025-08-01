@@ -17,9 +17,17 @@ const deleteBtn = document.getElementById('delete');
 const decimalBtn = document.getElementById('decimal');
 
 function operate(a, b, op){
-    let A = parseInt(a);
-    let B = parseInt(b);
     input = '';
+    let A;
+    let B;
+    if(a.includes('.') || b.includes('.')){
+        A = parseFloat(a);
+        B = parseFloat(b);
+    }else{
+        A = parseInt(a);
+        B = parseInt(b);
+    }
+
     if(op === '+'){
         return A + B;
     }else if(op === '-'){
@@ -37,6 +45,7 @@ numberButtons.forEach(button => {
     button.addEventListener('click', function(){
         if(equalsPressed){
             input = '';
+            equalsPressed = false;
         }
         delActive = true;
         opClicked = false;
@@ -106,7 +115,11 @@ deleteBtn.addEventListener('click', function(){
 
 decimalBtn.addEventListener('click', function(){
     if(!input.includes('.')){
-        input += '.';
+        if(input === ''){
+            input += '0.';
+        }else{
+            input += '.';
+        }
         inputBox.value = input;
     }
 });
